@@ -1,0 +1,12 @@
+[submodule "lib/cstorage"]
+	path = lib/cstorage
+	url = https://github.com/nickbedner/cstorage
+[submodule "lib/uber-math"]
+	path = lib/uber-math
+	url = https://github.com/nickbedner/uber-math
+[submodule "lib/cthreads"]
+	path = lib/cthreads
+	url = https://github.com/nickbedner/cthreads
+[submodule "lib/mimalloc"]
+	path = lib/mimalloc
+	url = https://github.com/microsoft/mimalloc
