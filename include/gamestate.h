@@ -8,7 +8,7 @@
 
 #include "dadnmeserver.h"
 #include "entities/entity.h"
-#include "entities/player.h"
+#include "entities/me.h"
 
 struct GameState {
   struct ArrayList entites;

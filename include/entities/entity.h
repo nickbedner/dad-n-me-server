@@ -9,6 +9,7 @@
 struct Entity {
   unsigned int entity_id;
   vec3 position;
+  float direction;
   void* entity_data;
   void (*delete_func)(void*, void*);
   void (*update_func)(void*, void*, float);
