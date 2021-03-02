@@ -3,15 +3,20 @@ cmake_minimum_required(VERSION 3.12)
 set(ignoreMe "${CMAKE_CXX_COMPILER}")
 set(CMAKE_C_STANDARD 11)
 
+option(DAD_N_ME_SERVER_STATIC_LIBRARY "Build static library" OFF)
+
 project(DadNMeServer LANGUAGES C VERSION 0.1.0)
 
 file(GLOB_RECURSE dad_n_me_SRC
         include/*.h
         src/*.c)
 
-#add_executable(DadNMeServer ${dad_n_me_SRC})
-# Start with library then standalone server
-add_library(DadNMeServer STATIC ${dad_n_me_SRC})
+# Check if building for static library or standalone server
+if(DAD_N_ME_SERVER_STATIC_LIBRARY)
+        add_library(DadNMeServer STATIC ${dad_n_me_SRC})
+else()
+        add_executable(DadNMeServer ${dad_n_me_SRC})
+endif()
 
 if (WIN32)
 # Add OpenMP

@@ -9,9 +9,10 @@
 #include "dadnmeserver.h"
 #include "entities/entity.h"
 #include "entities/me.h"
+#include "gamestage.h"
 
 struct GameState {
-  struct ArrayList entites;
+  struct GameStage game_stage;
 };
 
 int game_state_init(struct GameState* game_state);
