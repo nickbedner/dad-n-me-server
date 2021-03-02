@@ -12,8 +12,10 @@
 #include "gamestage.h"
 
 struct GameState {
-  struct GameStage game_stage;
+  struct GameStage* game_stage;
 };
+
+struct GameStage;
 
 int game_state_init(struct GameState* game_state);
 void game_state_delete(struct GameState* game_state);

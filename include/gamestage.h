@@ -5,15 +5,17 @@
 #include "memoryallocator.h"
 //
 #include <cstorage/cstorage.h>
+#include <xmlparser.h>
 
 #include "dadnmeserver.h"
 #include "entities/entity.h"
 #include "entities/me.h"
+#include "entities/scenery.h"
 
 struct GameStage {
-  struct ArrayList background_entities;
-  struct ArrayList state_entities;
-  struct ArrayList foreground_entities;
+  struct ArrayList scenery_entities;     // Background and floor
+  struct ArrayList doodad_entities;      // Things laying around
+  struct ArrayList foreground_entities;  // Foreground
 };
 
 int game_stage_init(struct GameStage* game_stage);

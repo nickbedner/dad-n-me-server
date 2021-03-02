@@ -64,6 +64,7 @@ set(includeList
         ${CMAKE_CURRENT_SOURCE_DIR}/lib/cthreads/include
         ${CMAKE_CURRENT_SOURCE_DIR}/lib/uber-math/include
         ${CMAKE_CURRENT_SOURCE_DIR}/lib/mimalloc/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/cxml-parser/include
         ${OpenMP_CXX_LIBRARIES})
 
 target_include_directories(DadNMeServer PUBLIC ${includeList})
