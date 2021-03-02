@@ -10,3 +10,6 @@
 [submodule "lib/mimalloc"]
 	path = lib/mimalloc
 	url = https://github.com/microsoft/mimalloc
+[submodule "lib/cxml-parser"]
+	path = lib/cxml-parser
+	url = https://github.com/nickbedner/cxml-parser
