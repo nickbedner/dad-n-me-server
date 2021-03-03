@@ -39,6 +39,7 @@ int game_stage_init(struct GameStage* game_stage) {
 
   return 0;
 }
+
 void game_stage_delete(struct GameStage* game_stage) {
   for (int scenery_num = 0; scenery_num < array_list_size(&game_stage->scenery_entities); scenery_num++) {
     struct Scenery* scenery = array_list_get(&game_stage->scenery_entities, scenery_num);
@@ -48,60 +49,6 @@ void game_stage_delete(struct GameStage* game_stage) {
 
   array_list_delete(&game_stage->scenery_entities);
 }
-void game_stage_update(struct GameStage* game_stage, double delta_time) {}
 
-//float fence_scale = draw_scale * 0.75f;
-//for (int loop_num = 0; loop_num < 10; loop_num++) {
-//  struct Sprite* sprite = calloc(1, sizeof(struct Sprite));
-//  sprite_init(sprite, gpu_api, &game->sprite_shader.shader, texture_cache_get(&resource_manager->texture_cache, "./assets/textures/forewoodfence.png"));
-//  sprite->position = (vec3){.x = -3.0f - (loop_num * sprite->width) * 0.92f * fence_scale, .y = -3.125f, .z = -2.0f + loop_num * 0.000001f};
-//  sprite->scale = (vec3){.x = fence_scale, .y = fence_scale, .z = fence_scale};
-//  array_list_add(&game->sprites, sprite);
-//}
-//
-//// HUD
-////game->hud_sprite = calloc(1, sizeof(struct Sprite));
-////sprite_init(game->hud_sprite, gpu_api, &game->sprite_shader.shader, texture_cache_get(&game->texture_cache, "./assets/textures/hud.png"));
-//////sprite->position = (vec3){.x = (loop_num * sprite->width) * 0.999f * draw_scale, .y = 10.0f, .z = 50.0f + (loop_num * 0.000001)};
-////game->hud_sprite->position = (vec3){.x = game->camera.position.x, .y = game->camera.position.y, .z = -0.1f};
-////game->hud_sprite->scale = (vec3){.x = draw_scale, .y = draw_scale, .z = draw_scale};
-////array_list_add(&game->sprites, game->hud_sprite);
-//
-//// Sandbox
-//struct Sprite* sandbox_sprite = calloc(1, sizeof(struct Sprite));
-//sprite_init(sandbox_sprite, gpu_api, &game->sprite_shader.shader, texture_cache_get(&resource_manager->texture_cache, "./assets/textures/sandbox.png"));
-//sandbox_sprite->position = (vec3){.x = -3.8f, .y = -1.5f, .z = 0.0f};
-//sandbox_sprite->scale = (vec3){.x = draw_scale * 1.75, .y = draw_scale * 1.75, .z = draw_scale * 1.75};
-//array_list_add(&game->sprites, sandbox_sprite);
-//
-//// Sign
-//struct Sprite* sign_sprite = calloc(1, sizeof(struct Sprite));
-//sprite_init(sign_sprite, gpu_api, &game->sprite_shader.shader, texture_cache_get(&resource_manager->texture_cache, "./assets/textures/sign.png"));
-//sign_sprite->position = (vec3){.x = -2.3f, .y = 0.45f, .z = 0.0f};
-//sign_sprite->scale = (vec3){.x = draw_scale, .y = draw_scale, .z = draw_scale};
-//array_list_add(&game->sprites, sign_sprite);
-//
-//// Fence
-//for (int loop_num = 0; loop_num < 10; loop_num++) {
-//  struct Sprite* sprite = calloc(1, sizeof(struct Sprite));
-//  sprite_init(sprite, gpu_api, &game->sprite_shader.shader, texture_cache_get(&resource_manager->texture_cache, "./assets/textures/fence.png"));
-//  sprite->position = (vec3){.x = 10.0f - (loop_num * sprite->width) * 0.92f * draw_scale, .y = 0.525f, .z = loop_num * 0.000001f};
-//  sprite->scale = (vec3){.x = draw_scale, .y = draw_scale, .z = draw_scale};
-//  array_list_add(&game->sprites, sprite);
-//}
-
-//// Wood fence
-//for (int loop_num = 0; loop_num < 10; loop_num++) {
-//  struct Sprite* sprite = calloc(1, sizeof(struct Sprite));
-//  sprite_init(sprite, gpu_api, &game->sprite_shader.shader, texture_cache_get(&resource_manager->texture_cache, "./assets/textures/woodfence.png"));
-//  sprite->position = (vec3){.x = -4.37125f - (loop_num * sprite->width) * 0.92f * draw_scale, .y = 0.825f, .z = 0.011f + loop_num * 0.000001f};
-//  sprite->scale = (vec3){.x = draw_scale, .y = draw_scale, .z = draw_scale};
-//  array_list_add(&game->sprites, sprite);
-//}
-//
-//// Sign 2
-//struct Sprite* sign_sprite2 = calloc(1, sizeof(struct Sprite));
-//sprite_init(sign_sprite2, gpu_api, &game->sprite_shader.shader, texture_cache_get(&resource_manager->texture_cache, "./assets/textures/sign2.png"));
-//sign_sprite2->position = (vec3){.x = 0.15f, .y = 1.1f, .z = 0.0111f};
-//sign_sprite2->scale = (vec3){.x = draw_scale, .y = draw_scale, .z = draw_scale};
-//array_list_add(&game->sprites, sign_sprite2);
+void game_stage_update(struct GameStage* game_stage, double delta_time) {
+}
