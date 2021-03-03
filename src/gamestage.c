@@ -23,8 +23,10 @@ int game_stage_init(struct GameStage* game_stage) {
   for (int scenery_num = 0; scenery_num < total_scenery_num; scenery_num++) {
     texture_settings_bucket.scenery[scenery_num] = calloc(1, sizeof(struct Scenery));
     struct XmlNode* position_node = xml_node_get_child(texture_settings_bucket.node[scenery_num], "position");
+    float scale = atof(xml_node_get_data(xml_node_get_child(texture_settings_bucket.node[scenery_num], "scale")));
     int repeat_factor = atoi(xml_node_get_data(xml_node_get_child(texture_settings_bucket.node[scenery_num], "repeat")));
-    scenery_init(texture_settings_bucket.scenery[scenery_num], xml_node_get_attribute(position_node, "path"), repeat_factor);
+    float offset = atof(xml_node_get_data(xml_node_get_child(texture_settings_bucket.node[scenery_num], "offset")));
+    scenery_init(texture_settings_bucket.scenery[scenery_num], xml_node_get_attribute(position_node, "path"), scale, repeat_factor, offset);
     float x = atof(xml_node_get_data(xml_node_get_child(position_node, "x")));
     float y = atof(xml_node_get_data(xml_node_get_child(position_node, "y")));
     float z = atof(xml_node_get_data(xml_node_get_child(position_node, "z")));
@@ -48,11 +50,6 @@ void game_stage_delete(struct GameStage* game_stage) {
 }
 void game_stage_update(struct GameStage* game_stage, double delta_time) {}
 
-//float draw_scale = 1.0f / 5.0f;
-//
-//// Load objects, reset unload/reload from scratch
-//// Draw sprites from front to back for transparencies
-//// Fore wood fence
 //float fence_scale = draw_scale * 0.75f;
 //for (int loop_num = 0; loop_num < 10; loop_num++) {
 //  struct Sprite* sprite = calloc(1, sizeof(struct Sprite));
@@ -77,18 +74,6 @@ void game_stage_update(struct GameStage* game_stage, double delta_time) {}
 //sandbox_sprite->scale = (vec3){.x = draw_scale * 1.75, .y = draw_scale * 1.75, .z = draw_scale * 1.75};
 //array_list_add(&game->sprites, sandbox_sprite);
 //
-//// Trash
-//struct Sprite* trash_sprite = calloc(1, sizeof(struct Sprite));
-//sprite_init(trash_sprite, gpu_api, &game->sprite_shader.shader, texture_cache_get(&resource_manager->texture_cache, "./assets/textures/trash.png"));
-//trash_sprite->position = (vec3){.x = -1.35f, .y = -0.125f, .z = 0.0f};
-//trash_sprite->scale = (vec3){.x = draw_scale, .y = draw_scale, .z = draw_scale};
-//array_list_add(&game->sprites, trash_sprite);
-//struct Sprite* trash_sprite2 = calloc(1, sizeof(struct Sprite));
-//sprite_init(trash_sprite2, gpu_api, &game->sprite_shader.shader, texture_cache_get(&resource_manager->texture_cache, "./assets/textures/trash2.png"));
-//trash_sprite2->position = (vec3){.x = -3.8f, .y = -0.125f, .z = 0.0f};
-//trash_sprite2->scale = (vec3){.x = draw_scale, .y = draw_scale, .z = draw_scale};
-//array_list_add(&game->sprites, trash_sprite2);
-//
 //// Sign
 //struct Sprite* sign_sprite = calloc(1, sizeof(struct Sprite));
 //sprite_init(sign_sprite, gpu_api, &game->sprite_shader.shader, texture_cache_get(&resource_manager->texture_cache, "./assets/textures/sign.png"));
@@ -104,31 +89,7 @@ void game_stage_update(struct GameStage* game_stage, double delta_time) {}
 //  sprite->scale = (vec3){.x = draw_scale, .y = draw_scale, .z = draw_scale};
 //  array_list_add(&game->sprites, sprite);
 //}
-//
-//// Grass
-//for (int loop_num = 0; loop_num < 15; loop_num++) {
-//  //if (loop_num <= 5) {
-//  //  struct Sprite* sprite = calloc(1, sizeof(struct Sprite));
-//  //  sprite_init(sprite, gpu_api, &game->sprite_shader.shader, texture_cache_get(&resource_manager->texture_cache, "./assets/textures/street.png"));
-//  //  sprite->position = (vec3){.x = 14.035f - (loop_num * sprite->width) * 0.995f * draw_scale, .y = -1.75, .z = 0.01 + (loop_num * 0.000001)};
-//  //  sprite->scale = (vec3){.x = draw_scale, .y = draw_scale, .z = draw_scale};
-//  //  array_list_add(&game->sprites, sprite);
-//  //} else if (loop_num <= 7) {
-//  if (loop_num <= 7) {
-//    struct Sprite* sprite = calloc(1, sizeof(struct Sprite));
-//    sprite_init(sprite, gpu_api, &game->sprite_shader.shader, texture_cache_get(&resource_manager->texture_cache, "./assets/textures/grass.png"));
-//    sprite->position = (vec3){.x = 14.0f - (loop_num * sprite->width) * 0.98f * draw_scale, .y = -1.675, .z = 0.01 + (loop_num * 0.000001)};
-//    sprite->scale = (vec3){.x = draw_scale, .y = draw_scale, .z = draw_scale};
-//    array_list_add(&game->sprites, sprite);
-//  } else {
-//    struct Sprite* sprite = calloc(1, sizeof(struct Sprite));
-//    sprite_init(sprite, gpu_api, &game->sprite_shader.shader, texture_cache_get(&resource_manager->texture_cache, "./assets/textures/grassshadow.png"));
-//    sprite->position = (vec3){.x = 14.0f - (loop_num * sprite->width) * 0.98f * draw_scale, .y = -1.675, .z = 0.01 + (loop_num * 0.000001)};
-//    sprite->scale = (vec3){.x = draw_scale, .y = draw_scale, .z = draw_scale};
-//    array_list_add(&game->sprites, sprite);
-//  }
-//}
-//
+
 //// Wood fence
 //for (int loop_num = 0; loop_num < 10; loop_num++) {
 //  struct Sprite* sprite = calloc(1, sizeof(struct Sprite));
@@ -144,20 +105,3 @@ void game_stage_update(struct GameStage* game_stage, double delta_time) {}
 //sign_sprite2->position = (vec3){.x = 0.15f, .y = 1.1f, .z = 0.0111f};
 //sign_sprite2->scale = (vec3){.x = draw_scale, .y = draw_scale, .z = draw_scale};
 //array_list_add(&game->sprites, sign_sprite2);
-//
-//// Background
-//struct Sprite* back_sprite = calloc(1, sizeof(struct Sprite));
-//sprite_init(back_sprite, gpu_api, &game->sprite_shader.shader, texture_cache_get(&resource_manager->texture_cache, "./assets/textures/back2.png"));
-//back_sprite->position = (vec3){.x = 1.0f, .y = 1.1f, .z = 7.0f};
-//back_sprite->scale = (vec3){.x = draw_scale * 2, .y = draw_scale * 2, .z = draw_scale * 2};
-//array_list_add(&game->sprites, back_sprite);
-//
-//// Clouds
-//float cloud_scale = 10.0f * draw_scale;
-//for (int loop_num = 0; loop_num < 1; loop_num++) {
-//  struct Sprite* sprite = calloc(1, sizeof(struct Sprite));
-//  sprite_init(sprite, gpu_api, &game->sprite_shader.shader, texture_cache_get(&resource_manager->texture_cache, "./assets/textures/clouds.png"));
-//  sprite->position = (vec3){.x = (loop_num * sprite->width) * 0.999f * draw_scale, .y = 10.0f, .z = 50.0f + (loop_num * 0.000001)};
-//  sprite->scale = (vec3){.x = cloud_scale, .y = cloud_scale, .z = cloud_scale};
-//  array_list_add(&game->sprites, sprite);
-//}

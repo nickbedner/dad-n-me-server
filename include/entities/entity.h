@@ -12,6 +12,7 @@ struct Entity {
   float direction;
   float width;
   float height;
+  float scale;
   void* entity_data;
   void (*delete_func)(void*, void*);
   void (*update_func)(void*, void*, float);
