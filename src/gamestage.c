@@ -1,5 +1,8 @@
 #include "gamestage.h"
 
+// Design stages as chunks going from left to right
+// Then attach each stage chunk to allow easy moving of assets
+
 int game_stage_init(struct GameStage* game_stage) {
   array_list_init(&game_stage->scenery_entities);
   // Load stage from file
