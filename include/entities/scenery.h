@@ -12,7 +12,7 @@ struct Scenery {
   struct Entity entity;
   char* texture_path;
   int repeat_factor;
-  float offset
+  float offset;
 };
 
 struct GameState;
