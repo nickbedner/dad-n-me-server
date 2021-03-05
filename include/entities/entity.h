@@ -20,4 +20,16 @@ struct Entity {
   void (*recreate_func)(void*, void*);
 };
 
+struct EntityUpdateData {
+  void* entity_handle;
+  void* game_handle;
+  float delta_time;
+};
+
+static inline void entity_update_job(void* data) {
+  struct EntityUpdateData* update_data = data;
+  struct Entity* entity = update_data->entity_handle;
+  (*entity->update_func)(entity->entity_data, update_data->game_handle, update_data->delta_time);
+}
+
 #endif  // ENTITY_H
