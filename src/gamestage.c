@@ -1,4 +1,4 @@
-#include "gamestage.h"
+/*#include "gamestage.h"
 
 // Design stages as chunks going from left to right
 // Then attach each stage chunk to allow easy moving of assets
@@ -55,3 +55,4 @@ void game_stage_delete(struct GameStage* game_stage) {
 
 void game_stage_update(struct GameStage* game_stage, double delta_time) {
 }
+*/

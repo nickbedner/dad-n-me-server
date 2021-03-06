@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #ifndef ME_H
 #define ME_H
 
@@ -24,4 +24,4 @@ int me_init(struct Me* me, struct GameState* game_state);
 void me_delete(struct Me* me, void* other);
 void me_update(struct Me* me, struct GameState* game_state, float delta_time);
 
-#endif  // ME_H
+#endif  // ME_H*/

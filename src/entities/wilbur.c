@@ -1,6 +1,7 @@
-#include "entities/wilbur.h"
+/*#include "entities/wilbur.h"
 
 int wilbur_init(struct Wilbur* wilbur, struct GameState* game_state) {
+  entity_init(&wilbur->entity);
   wilbur->entity.entity_data = wilbur;
   wilbur->entity.delete_func = (void (*)(void*, void*))wilbur_delete;
   wilbur->entity.update_func = (void (*)(void*, void*, float))wilbur_update;
@@ -17,3 +18,4 @@ void wilbur_delete(struct Wilbur* wilbur, void* other) {
 
 void wilbur_update(struct Wilbur* wilbur, struct GameState* game_state, float delta_time) {
 }
+*/

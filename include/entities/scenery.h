@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #ifndef SCENERY_H
 #define SCENERY_H
 
@@ -22,3 +22,4 @@ void scenery_delete(struct Scenery* scenery, void* other);
 void scenery_update(struct Scenery* scenery, struct GameState* game_state, float delta_time);
 
 #endif  // SCENERY_H
+*/

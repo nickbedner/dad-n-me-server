@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #ifndef WILBUR_H
 #define WILBUR_H
 
@@ -14,7 +14,8 @@ enum WilburState {
 };
 
 struct Wilbur {
-  struct Entity entity;
+  //struct Entity entity;
+  unsigned int entity_id;
   enum WilburState state;
 };
 
@@ -25,3 +26,4 @@ void wilbur_delete(struct Wilbur* wilbur, void* other);
 void wilbur_update(struct Wilbur* wilbur, struct GameState* game_state, float delta_time);
 
 #endif  // WILBUR_H
+*/

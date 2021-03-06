@@ -1,6 +1,7 @@
-#include "entities/scenery.h"
+/*#include "entities/scenery.h"
 
 int scenery_init(struct Scenery* scenery, char* texture_path, float scale, int repeat_factor, float offset) {
+  entity_init(&scenery->entity);
   scenery->entity.entity_data = scenery;
   scenery->texture_path = strdup(texture_path);
   scenery->repeat_factor = repeat_factor;
@@ -21,3 +22,4 @@ void scenery_delete(struct Scenery* scenery, void* other) {
 
 void scenery_update(struct Scenery* scenery, struct GameState* game_state, float delta_time) {
 }
+*/

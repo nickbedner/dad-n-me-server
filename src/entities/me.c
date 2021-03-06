@@ -1,6 +1,7 @@
-#include "entities/me.h"
+/*#include "entities/me.h"
 
 int me_init(struct Me* me, struct GameState* game_state) {
+  entity_init(&me->entity);
   me->entity.entity_data = me;
   me->entity.delete_func = (void (*)(void*, void*))me_delete;
   me->entity.update_func = (void (*)(void*, void*, float))me_update;
@@ -17,3 +18,4 @@ void me_delete(struct Me* me, void* other) {
 
 void me_update(struct Me* me, struct GameState* game_state, float delta_time) {
 }
+*/
