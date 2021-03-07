@@ -55,17 +55,21 @@ static inline int component_registry_init(struct ComponentRegistry* component_re
   return 0;
 }
 
+static inline void component_registry_delete(struct ComponentRegistry* component_registry) {
+  map_delete(&component_registry->registry);
+}
+
 static inline void component_registry_set(struct ComponentRegistry* component_registry, struct Entity* entity, void* new_component) {
   // When data oriented set vector then map should be references
   map_set(&component_registry->registry, entity->entity_id, new_component);
 }
 
-static inline void component_registry_delete(struct ComponentRegistry* component_registry) {
-  map_delete(&component_registry->registry);
-}
-
 static inline void* component_registry_get(struct ComponentRegistry* component_registry, char* entity_id) {
   return map_get(&component_registry->registry, entity_id);
+}
+
+static inline void component_registry_remove(struct ComponentRegistry* component_registry, char* entity_id) {
+  map_remove(&component_registry->registry, entity_id);
 }
 
 #endif  // ENTITY_H

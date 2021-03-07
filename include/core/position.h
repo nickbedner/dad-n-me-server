@@ -11,20 +11,15 @@
 #include "core/entity.h"
 
 struct Position {
-  vec3 position;
-  float direction;
-  float width;
-  float height;
-  float scale;
+  float x;
+  float y;
+  float z;
 };
 
 //struct PositionComponentPsuedoDO {
-//  struct Vector position;
-//  struct Vector direction;
-//  struct Vector width;
-//  struct Vector height;
-//  struct Vector scale;
-//  struct Vector map_ref;
+//  struct Vector x;
+//  struct Vector y;
+//  struct Vector z;
 //};
 
 #endif  // POSITION_H
