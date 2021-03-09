@@ -6,13 +6,21 @@
 //
 #include <cstorage/cstorage.h>
 
+#include "core/dimensions.h"
+#include "core/entity.h"
+#include "core/position.h"
+#include "core/scenery.h"
 #include "dadnmeserver.h"
-#include "entities/entity.h"
 #include "entities/me.h"
 #include "gamestage.h"
 
 struct GameState {
   struct GameStage* game_stage;
+
+  struct ComponentRegistry position_registry;
+  struct ComponentRegistry dimensions_registry;
+  struct ComponentRegistry scenery_registry;
+  struct Vector entities;
 };
 
 struct GameStage;

@@ -6,6 +6,7 @@
 //
 #include "dadnmeemulate.h"
 #include "dadnmesocket.h"
+#include "gamestate.h"
 
 enum DadNMeServerType {
   DAD_N_ME_SERVER_SOCKET = 0,
@@ -18,9 +19,10 @@ struct DadNMeServer {
     struct DadNMeEmulate dad_n_me_emulate;
   };
   enum DadNMeServerType dad_n_me_server_type;
+  struct GameState* game_state;
 };
 
-int dad_n_me_server_init(struct DadNMeServer* dad_n_me_server, enum DadNMeServerType dad_n_me_server_type);
+int dad_n_me_server_init(struct DadNMeServer* dad_n_me_server, enum DadNMeServerType dad_n_me_server_type, struct GameState* game_state);
 void dad_n_me_server_delete(struct DadNMeServer* dad_n_me_server);
 void dad_n_me_server_send(struct DadNMeServer* dad_n_me_server);
 void dad_n_me_server_recieve(struct DadNMeServer* dad_n_me_server);
